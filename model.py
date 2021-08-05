@@ -126,9 +126,7 @@ class Model(object):
             for batch, (batch_input, batch_target, batch_target_length) in enumerate(self.train_dataset.dataset):
                 if hparams.augment:
                     batch_input = self.augment(batch_input)
-                    batch_input = tf.cast(batch_input, tf.float32)/255
-                else:
-                    batch_input = tf.cast(batch_input, tf.float32)/255
+                batch_input = tf.cast(batch_input, tf.float32)/255.0
                 batch_loss = self.train_step(batch_input, batch_target, batch_target_length)
                 total_loss += batch_loss
                 if batch % 1 == 0:
@@ -142,7 +140,7 @@ class Model(object):
             sum_char = 1
             sum_str = 1
             for batch, (batch_input, batch_target, batch_target_length) in enumerate(self.valid_dataset.dataset):
-                batch_input = tf.cast(batch_input, tf.float32)/255
+                batch_input = tf.cast(batch_input, tf.float32)/255.0
                 batch_true_char, batch_true_str = self.evaluate(batch_input, batch_target, batch_target_length)
                 cnt_true_char += batch_true_char
                 cnt_true_str  += batch_true_str
