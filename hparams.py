@@ -2,11 +2,11 @@
 class Hparams:
     def __init__(self):
         ### data and save path
-        self.train_record_path = 'ocr/tfRecord_dataset/image_info.train'
-        self.num_train_sample = 1690388
-        self.valid_record_path = 'ocr/tfRecord_dataset/image_info.valid'
-        self.charset_path = 'Non-autoregressive-OCR/charsets/charset_size=94.txt'
-        self.num_valid_sample = 7249
+        self.train_record_path = '/data2/users/common/corpora/vision/temp_data/name_cLy/extract_name_cLy2.train'
+        self.num_train_sample = 1022358
+        self.valid_record_path = '/data2/users/common/corpora/vision/temp_data/name_cLy/extract_name_cLy.valid'
+        self.charset_path = 'charsets/charset_size=94.txt'
+        self.num_valid_sample = 8165
         self.save_path = 'training_checkpoints'
         self.save_best = False
         self.max_to_keep = 1000
@@ -16,10 +16,10 @@ class Hparams:
         self.model_name = 'cnn_sa_ctc' #'cnn_ctc'
 
         ### input params
-        self.image_shape = (50, 250, 3)
-        self.nul_code = 93
-        self.charset_size = 94
-        self.max_char_length = 15
+        self.image_shape = (50, 500, 3)
+        self.nul_code = 10
+        self.charset_size = 11
+        self.max_char_length = 13
 
         ### conv_tower params
         # base model from tf.keras.application, or custom instance of tf.keras.Model
@@ -42,7 +42,7 @@ class Hparams:
             self.dropout_rate = 0.1
 
         ### training params
-        self.batch_size = 128
+        self.batch_size = 320
         self.max_epochs = 1000
         self.lr = 0.0001
 

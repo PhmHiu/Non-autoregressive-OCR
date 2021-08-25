@@ -162,6 +162,7 @@ class CNN_SA_CTC(tf.keras.Model):
 
         # extract feature map
         start = datetime.now()
+        inputs = tf.cast(inputs, tf.float32)/255.0
         conv_out = self.conv_layer(inputs)
         # print(datetime.now() - start)
 

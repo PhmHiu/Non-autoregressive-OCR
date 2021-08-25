@@ -28,9 +28,10 @@ class Dataset(object):
 
     def load_tfrecord(self, repeat=None):
         dataset = tf.data.TFRecordDataset(self.record_path, buffer_size=1000)
-        dataset.shuffle(1000)
+        dataset.shuffle(1800000)
         dataset = dataset.map(self.parse_tfrecord)
         self.dataset = dataset.batch(self.hparams.batch_size)
+        self.dataset.prefetch(tf.data.experimental.AUTOTUNE)
         self.iterator = iter(dataset)
 
     def next_batch(self):
